@@ -11,19 +11,15 @@
 /* ************************************************************************** */
 
 #include <iostream>
+#include <PhoneBook.hpp>
 
-class Contact
+int	main()
 {
-	
-};
+	PhoneBook	phone;
+	string		input;
 
-class PhoneBook
-{
-	private:
-		
-};
-
-int	main(int argc, char **argv)
-{
-	
+	phone.AddContact();
+	phone.AddContact();
+	phone.DisplayPhoneBook();
+	return (0);
 }

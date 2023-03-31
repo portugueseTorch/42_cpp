@@ -18,6 +18,8 @@
 
 using namespace std;
 
+typedef std::string string;
+
 class Contact
 {
 	private:

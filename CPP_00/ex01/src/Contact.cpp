@@ -57,7 +57,7 @@ void	display_aux(string info)
 	int	length;
 
 	length = info.length();
-	if (length > 10)
+	if (length > 9)
 		cout << info.substr(0, 9) << ".|";
 	else
 	{

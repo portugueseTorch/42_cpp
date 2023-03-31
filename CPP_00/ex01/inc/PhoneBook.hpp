@@ -23,6 +23,7 @@ class PhoneBook
 {
 	private:
 		int		id;
+		int		num_contacts;
 		Contact	contacts[8];
 
 	public:

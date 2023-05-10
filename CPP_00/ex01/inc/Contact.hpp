@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Contact.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gda_cruz <gda_cruz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gda-cruz <gda-cruz@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/30 18:05:00 by gda_cruz          #+#    #+#             */
-/*   Updated: 2023/03/31 09:30:34 by gda_cruz         ###   ########.fr       */
+/*   Created: 2023/05/10 11:03:59 by gda-cruz          #+#    #+#             */
+/*   Updated: 2023/05/10 12:32:52 by gda-cruz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,30 +14,22 @@
 # define CONTACT_HPP
 
 # include <iostream>
-# include <string>
-
-using namespace std;
-
-typedef std::string string;
 
 class Contact
 {
 	private:
-		string	FirstName;
-		string	LastName;
-		string	Nickname;
-		string	PhoneNumber;
-		string	DarkestSecret;
-
+		std::string	_first_name;
+		std::string	_last_name;
+		std::string	_nickname;
+		std::string	_phone_number;
+		std::string	_darkest_secret;
+	
 	public:
-		void	setFirstName(string FirstName);
-		void	setLastName(string LastName);
-		void	setNickname(string Nickname);
-		void	setPhoneNumber(string PhoneNumber);
-		void	setDarkestSecret(string DarkestSecret);
-
-		void	DisplayContactInfo();
-		void	DisplayFormatted();
+		void	setFirstName(std::string first_name);
+		void	setLastName(std::string last_name);
+		void	setNickname(std::string nickname);
+		void	setPhoneNumber(std::string phone_number);
+		void	setDarkestSecret(std::string darkest_secret);
 };
 
 #endif

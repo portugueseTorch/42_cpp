@@ -3,27 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   megaphone.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gda_cruz <gda_cruz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gda-cruz <gda-cruz@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/28 19:33:27 by gda_cruz          #+#    #+#             */
-/*   Updated: 2023/03/30 14:27:17 by gda_cruz         ###   ########.fr       */
+/*   Created: 2023/05/10 09:17:55 by gda-cruz          #+#    #+#             */
+/*   Updated: 2023/05/10 11:03:15 by gda-cruz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
-using namespace std;
 
 int	main(int argc, char **argv)
 {
 	if (argc == 1)
-		cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *";
+		std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *";
 	else
 	{
-		for (int i = 1; i < argc; i++)
-		{
+		for (int i = 1; argv[i]; i++)
 			for (int j = 0; argv[i][j]; j++)
-				cout << (char)toupper(argv[i][j]);
-		}
+				std::cout << (char)toupper(argv[i][j]);
 	}
-	cout << endl;
+	std::cout << std::endl;
+	return 0;
 }

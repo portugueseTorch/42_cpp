@@ -3,23 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gda_cruz <gda_cruz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gda-cruz <gda-cruz@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/30 17:46:42 by gda_cruz          #+#    #+#             */
-/*   Updated: 2023/03/30 18:01:31 by gda_cruz         ###   ########.fr       */
+/*   Created: 2023/05/10 12:39:05 by gda-cruz          #+#    #+#             */
+/*   Updated: 2023/05/10 13:27:03 by gda-cruz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
-#include <PhoneBook.hpp>
+#include "PhoneBook.hpp"
 
 int	main()
 {
-	PhoneBook	phone;
-	string		input;
+	PhoneBook	phonebook;
+	std::string	input;
 
-	phone.AddContact();
-	phone.AddContact();
-	phone.DisplayPhoneBook();
-	return (0);
+	while (1)
+	{
+		std::cout << "> ";
+	}
+	return 0;
 }

@@ -6,7 +6,7 @@
 #    By: gda_cruz <gda_cruz@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/28 18:53:37 by gda_cruz          #+#    #+#              #
-#    Updated: 2023/03/28 20:33:18 by gda_cruz         ###   ########.fr        #
+#    Updated: 2023/05/11 11:47:31 by gda_cruz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ INC_DIR	=	inc
 ####### FILES #######
 SRC		=	$(shell find src/ -name '*.cpp')
 OBJ		=	$(patsubst src/%.cpp,$(OBJ_DIR)/%.o,$(SRC))
-NAME 	=	megaphone
+NAME 	=	account
 
 all: $(NAME)
 

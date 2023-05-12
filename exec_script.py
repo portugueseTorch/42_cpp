@@ -32,6 +32,7 @@ for item in list:
 		shutil.copy("Makefile", item)
 	except:
 		print("Makefile does not exist")
+		quit()
 	sub_list = [ item + "/src", item + "/inc" ]
 	for subitem in sub_list:
 		try:

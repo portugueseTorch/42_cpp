@@ -5,25 +5,21 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: gda-cruz <gda-cruz@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/13 18:14:21 by gda_cruz          #+#    #+#             */
-/*   Updated: 2023/05/18 14:43:30 by gda-cruz         ###   ########.fr       */
+/*   Created: 2023/05/18 16:29:56 by gda-cruz          #+#    #+#             */
+/*   Updated: 2023/05/18 17:23:15 by gda-cruz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/Zombie.hpp"
+#include "../inc/Harl.hpp"
 
-int	main() {
-	int		horde_size;
-	Zombie	*horde;
+int	main(int argc, char **argv) {
+	Harl	test;
 
-	// Allocates memory for 10 Zombie instances
-	horde_size = 10;
-	horde = zombieHorde(horde_size, "Random horde member");
-	if (horde == NULL)
-		return 1;
-
-	// Free the memory allocated for the horde
-	delete[] horde;
-
+	if (argc != 2)
+	{
+		std::cerr << "Error: usage: ./harl __complain_level__" << std::endl;
+		return 1;		
+	}
+	test.complain(argv[1]);
 	return 0;
 }

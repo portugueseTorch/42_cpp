@@ -1,29 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Harl.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gda-cruz <gda-cruz@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/13 18:14:21 by gda_cruz          #+#    #+#             */
-/*   Updated: 2023/05/18 14:43:30 by gda-cruz         ###   ########.fr       */
+/*   Created: 2023/05/18 16:29:24 by gda-cruz          #+#    #+#             */
+/*   Updated: 2023/05/18 16:46:13 by gda-cruz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/Zombie.hpp"
+#ifndef HARL_HPP
+# define HARL_HPP
 
-int	main() {
-	int		horde_size;
-	Zombie	*horde;
+# include <iostream>
+# include <string>
+# include <exception>
 
-	// Allocates memory for 10 Zombie instances
-	horde_size = 10;
-	horde = zombieHorde(horde_size, "Random horde member");
-	if (horde == NULL)
-		return 1;
+class Harl
+{
+	public:
+		Harl();
+		~Harl();
+		void complain( std::string level );
+	private:
+		void debug( void );
+		void info( void );
+		void warning( void );
+		void error( void );
+};
 
-	// Free the memory allocated for the horde
-	delete[] horde;
-
-	return 0;
-}
+#endif

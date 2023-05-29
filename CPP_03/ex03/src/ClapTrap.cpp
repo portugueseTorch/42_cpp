@@ -1,15 +1,11 @@
 #include "../inc/ClapTrap.hpp"
 
 ////// CONSTRUCTORS AND DESTRUCTORS //////
-ClapTrap::ClapTrap() {
+ClapTrap::ClapTrap(): _name(""), _hitPoints(40), _energyPoints(10), _attackDamage(20) {
 	std::cout << "ClapTrap default constructor called" << std::endl;
 }
 
-ClapTrap::ClapTrap(const std::string name) {
-	_name = name;
-	_hitPoints = 40;
-	_energyPoints = 10;
-	_attackDamage = 20;
+ClapTrap::ClapTrap(const std::string &name): _name(name), _hitPoints(40), _energyPoints(10), _attackDamage(20) {
 	std::cout << "ClapTrap constructor called for " << _name << std::endl;
 }
 
@@ -30,7 +26,7 @@ ClapTrap &ClapTrap::operator=(const ClapTrap &obj) {
 }
 
 ClapTrap::~ClapTrap() {
-	std::cout << "ClapTrap constructor called for "<< _name << std::endl;
+	std::cout << "ClapTrap destructor called for "<< _name << std::endl;
 }
 
 ////// GETTERS AND SETTERS //////

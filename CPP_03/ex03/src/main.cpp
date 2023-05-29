@@ -1,17 +1,20 @@
 #include "../inc/ClapTrap.hpp"
 #include "../inc/ScavTrap.hpp"
 #include "../inc/FragTrap.hpp"
+#include "../inc/DiamondTrap.hpp"
 
 int	main() {
 	ClapTrap Joca("Joca");
 	ScavTrap Zeca("Zeca");
-	FragTrap Lulu("Lulu");
+	FragTrap Lola("Lola");
+	DiamondTrap Dudu("Dudu");
 
 	std::cout << std::endl;
 
 	std::cout << Joca << std::endl;
 	std::cout << Zeca << std::endl;
-	std::cout << Lulu << std::endl;
+	std::cout << Lola << std::endl;
+	std::cout << Dudu << std::endl;
 
 	Joca.attack(Joca.getName());
 	Joca.takeDamage(Joca.getAttackDamage());
@@ -21,25 +24,25 @@ int	main() {
 	Zeca.takeDamage(Zeca.getAttackDamage());
 	std::cout << std::endl;
 
-	Lulu.attack(Lulu.getName());
-	Lulu.takeDamage(Lulu.getAttackDamage());
+	Lola.attack(Lola.getName());
+	Lola.takeDamage(Lola.getAttackDamage());
 	std::cout << std::endl;
 
 	Zeca.attack(Joca.getName());
 	Joca.takeDamage(Zeca.getAttackDamage());
-	Lulu.attack(Zeca.getName());
-	Zeca.takeDamage(Lulu.getAttackDamage());
+	Lola.attack(Zeca.getName());
+	Zeca.takeDamage(Lola.getAttackDamage());
 	std::cout << std::endl;
 
 	Zeca.guardGate();
 	Zeca.guardGate();
 	std::cout << std::endl;
 
-	Lulu.highFivesGuys();
+	Lola.highFivesGuys();
 	std::cout << std::endl;
 
 	std::cout << Joca << std::endl;
 	std::cout << Zeca << std::endl;
-	std::cout << Lulu << std::endl;
+	std::cout << Lola << std::endl;
 	return 0;
 }

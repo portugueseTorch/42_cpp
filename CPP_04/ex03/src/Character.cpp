@@ -50,7 +50,7 @@ void Character::equip(AMateria* m) {
 		i++;
 	_inventory[i] = m;
 	_num_materia++;
-	std::cout << "Materia " << m->getType() << " successfuly added to the inventory!" << std::endl;
+	std::cout << "Materia " << m->getType() << " successfuly added to the inventory of " << _name << std::endl;
 }
 
 void Character::unequip(int idx) {

@@ -28,18 +28,30 @@ class AForm
 			public:
 				virtual const char* what() const throw();
 		};
+		class FormNotSignedException: public std::exception
+		{
+			public:
+				virtual const char* what() const throw();
+		};
+		class FormAlreadySignedException: public std::exception
+		{
+			public:
+				virtual const char* what() const throw();
+		};
 
 		// Getters
-		const std::string	&getName() const;
-		bool				getSignedStatus() const;
-		int					getSignGrade() const;
-		int					getExecGrade() const;
+		const std::string			&getName() const;
+		bool						getSignedStatus() const;
+		int							getSignGrade() const;
+		int							getExecGrade() const;
+		virtual const std::string	&getTarget() const = 0;
 		
 		// Member Functions
 		void				beSigned(Bureaucrat &obj);
+		void execute(Bureaucrat const &executor) const;
 
 	protected:
-		virtual void execute(Bureaucrat const & executor) const = 0;
+		virtual void concreteExecute() const = 0;
 
 	private:
 		const std::string	_name;

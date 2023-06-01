@@ -30,7 +30,15 @@ const char *AForm::GradeTooLowException::what() const throw() {
 }
 
 const char *AForm::GradeTooHighException::what() const throw() {
-	return "Grade is too high";
+	return "grade is too high";
+}
+
+const char *AForm::FormNotSignedException::what() const throw() {
+	return "Form is not signed";
+}
+
+const char *AForm::FormAlreadySignedException::what() const throw() {
+	return "Form is already signed";
 }
 
 ///// GETTERS /////
@@ -54,7 +62,17 @@ int AForm::getExecGrade() const {
 void AForm::beSigned(Bureaucrat &obj) {
 	if (_sign_grade < obj.getGrade())
 		throw GradeTooLowException();
+	else if (_signed)
+		throw FormAlreadySignedException();
 	_signed = true;
+}
+
+void AForm::execute(Bureaucrat const &executor) const {
+	if (!this->getSignedStatus())
+		throw FormNotSignedException();
+	else if (this->getExecGrade() < executor.getGrade())
+		throw GradeTooLowException();
+	concreteExecute();
 }
 
 ///// << OVERLOADER /////

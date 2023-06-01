@@ -1,6 +1,7 @@
 #include "../inc/Bureaucrat.hpp"
 #include "../inc/AForm.hpp"
 #include "../inc/PresidentialPardonForm.hpp"
+#include "../inc/RobotomyRequestForm.hpp"
 
 void	test(std::string test_type, std::string name, int grade, std::string form) {
 	if (test_type == "b_range")
@@ -177,6 +178,22 @@ int	main() {
 			test("signing", name, form.getSignGrade(), "Presidential Form");
 			burr.signForm(form);
 			test("executing", name, form.getExecGrade(), "Presidential Form");
+			burr.executeForm(form);
+			std::cout << "\n" << std::endl;
+		}
+
+		{
+			name = "Doug";
+			grade = 6;
+			target = "Rudy";
+			Bureaucrat burr(name, grade);
+			RobotomyRequestForm form(target);
+			std::cout << "\033[0;34m" << burr << "\033[0m";
+			test("signing", name, form.getSignGrade(), "Robotomy Request");
+			burr.signForm(form);
+			test("signing", name, form.getSignGrade(), "Robotomy Request");
+			burr.signForm(form);
+			test("executing", name, form.getExecGrade(), "Robotomy Request");
 			burr.executeForm(form);
 			std::cout << "\n" << std::endl;
 		}

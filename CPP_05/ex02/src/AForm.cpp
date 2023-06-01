@@ -1,4 +1,5 @@
 #include "../inc/AForm.hpp"
+#include "../inc/ShrubberyCreationForm.hpp"
 
 ///// CONSTRUCTORS AND DESTRUCTORS /////
 AForm::AForm(): _name("Template AForm"), _sign_grade(150), _exec_grade(150) {}
@@ -72,7 +73,8 @@ void AForm::execute(Bureaucrat const &executor) const {
 		throw FormNotSignedException();
 	else if (this->getExecGrade() < executor.getGrade())
 		throw GradeTooLowException();
-	concreteExecute();
+	try { concreteExecute(); } 
+	catch (ShrubberyCreationForm::FileOpenException &e) { throw e; }
 }
 
 ///// << OVERLOADER /////

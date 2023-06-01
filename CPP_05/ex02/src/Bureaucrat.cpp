@@ -1,4 +1,5 @@
 #include "../inc/Bureaucrat.hpp"
+#include "../inc/ShrubberyCreationForm.hpp"
 
 Bureaucrat::Bureaucrat(): _name("Unspecified"), _grade(150) {}
 
@@ -74,6 +75,8 @@ void Bureaucrat::executeForm(AForm const &form) {
 	try {
 		form.execute(*this);
 		std::cout << "    ✅ " << _name << " executed " << form.getName();
+	} catch (ShrubberyCreationForm::FileOpenException &e) {
+		std::cout << "    ❌ " << e.what();
 	} catch (std::exception &e) {
 		std::cout << "    ❌ " << _name << " couldn't execute " << form.getName() << " because " << e.what();
 	}

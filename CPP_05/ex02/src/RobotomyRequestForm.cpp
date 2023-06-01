@@ -1,12 +1,10 @@
 #include "../inc/RobotomyRequestForm.hpp"
-# include <cstdlib>
-# include <time.h>
 
 RobotomyRequestForm::RobotomyRequestForm(): _target("Unspecified") {}
 
 RobotomyRequestForm::RobotomyRequestForm(std::string target): AForm("Robotomy Request", 72, 45), _target(target) {}
 
-RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &obj) {
+RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &obj): AForm("Robotomy Request", 72, 45) {
 	*this = obj;
 }
 

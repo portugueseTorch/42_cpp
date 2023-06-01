@@ -3,6 +3,7 @@
 #include "../inc/PresidentialPardonForm.hpp"
 #include "../inc/RobotomyRequestForm.hpp"
 #include "../inc/ShrubberyCreationForm.hpp"
+#include "../inc/Intern.hpp"
 
 void	test(std::string test_type, std::string name, int grade, std::string form) {
 	if (test_type == "b_range")
@@ -15,6 +16,8 @@ void	test(std::string test_type, std::string name, int grade, std::string form) 
 		std::cout << "\n  Signing " << form << ", needs " << grade << " to sign:\n";
 	else if (test_type == "executing")
 		std::cout << "\n  Executing " << form << ", needs " << grade << " to execute:\n"; 
+	else if (test_type == "creating")
+		std::cout << "\n  Creating form " << form << ":\n";
 }
 
 int	main() {
@@ -274,6 +277,83 @@ int	main() {
 			burr.signForm(form);
 			test("executing", name, form.getExecGrade(), "Shrubbery Form");
 			burr.executeForm(form);
+			std::cout << "\n" << std::endl;
+		} catch (std::exception &e) { std::cout << e.what() << std::endl; }
+	}
+
+	std::cout << "\n------------------------------------------" << std::endl;
+	std::cout << "              TESTING INTERN              " << std::endl;
+	std::cout << "------------------------------------------" << std::endl;
+	{
+		try {
+			name = "John";
+			grade = 20;
+			Intern intern;
+			Bureaucrat burr(name, grade);
+			std::cout << "\033[0;34m" << burr << "\033[0m";
+			test("creating", name, 0, "");
+			AForm *form = intern.makeForm("presidential pardon", "Bob");
+			if (form) {
+				test("signing", name, form->getSignGrade(), "Presidencial Pardon");
+				burr.signForm(*form);
+				test("executing", name, form->getExecGrade(), "Presidencial Pardon");
+				burr.executeForm(*form);
+				delete form;
+			}
+			std::cout << "\n" << std::endl;
+		} catch (std::exception &e) { std::cout << e.what() << std::endl; }
+
+		try {
+			name = "Anne";
+			grade = 40;
+			Intern intern;
+			Bureaucrat burr(name, grade);
+			std::cout << "\033[0;34m" << burr << "\033[0m";
+			test("creating", name, 0, "");
+			AForm *form = intern.makeForm("robotomy request", "Doll");
+			if (form) {
+				test("signing", name, form->getSignGrade(), "Robotomy Request");
+				burr.signForm(*form);
+				test("executing", name, form->getExecGrade(), "Robotomy Request");
+				burr.executeForm(*form);
+				delete form;
+			}
+			std::cout << "\n" << std::endl;
+		} catch (std::exception &e) { std::cout << e.what() << std::endl; }
+
+		try {
+			name = "Paul";
+			grade = 140;
+			Intern intern;
+			Bureaucrat burr(name, grade);
+			std::cout << "\033[0;34m" << burr << "\033[0m";
+			test("creating", name, 0, "");
+			AForm *form = intern.makeForm("shrubbery creation", "home");
+			if (form) {
+				test("signing", name, form->getSignGrade(), "Shrubbery Creation");
+				burr.signForm(*form);
+				test("executing", name, form->getExecGrade(), "Shrubbery Creation");
+				burr.executeForm(*form);
+				delete form;
+			}
+			std::cout << "\n" << std::endl;
+		} catch (std::exception &e) { std::cout << e.what() << std::endl; }
+
+		try {
+			name = "Invalid";
+			grade = 30;
+			Intern intern;
+			Bureaucrat burr(name, grade);
+			std::cout << "\033[0;34m" << burr << "\033[0m";
+			test("creating", name, 0, "");
+			AForm *form = intern.makeForm("random form", "Bob");
+			if (form) {
+				test("signing", name, form->getSignGrade(), "Presidencial Pardon");
+				burr.signForm(*form);
+				test("executing", name, form->getExecGrade(), "Presidencial Pardon");
+				burr.executeForm(*form);
+				delete form;
+			}
 			std::cout << "\n" << std::endl;
 		} catch (std::exception &e) { std::cout << e.what() << std::endl; }
 	}

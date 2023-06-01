@@ -1,7 +1,10 @@
+#pragma once
 #ifndef ROBOTOMYREQUESTFORM_HPP
 # define ROBOTOMYREQUESTFORM_HPP
 
 # include "AForm.hpp"
+# include <cstdlib>
+# include <time.h>
 
 class RobotomyRequestForm: public AForm
 {

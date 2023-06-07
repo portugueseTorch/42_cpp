@@ -24,7 +24,9 @@ bool ScalarConverter::isPseudoLiteral(std::string convert) {
 
 bool ScalarConverter::isError(std::string convert) {
 	if (convert.empty() || \
-		convert.find_first_of(".") != convert.find_last_of("."))
+		convert.find_first_of(".") != convert.find_last_of(".") || \
+		(!isdigit(convert[0]) && (convert[0] == '-' && !isdigit(convert[1]))) || \
+		(!isdigit(convert[0]) && (convert[0] == '+' && !isdigit(convert[1]))))
 		return true;
 	return false;
 }
@@ -115,27 +117,54 @@ void ScalarConverter::convert(std::string convert) {
 }
 
 /****** DISPLAY TYPES ******/
-bool hasPoint(std::string convert) {
-	for (size_t i = 0; i < convert.length(); i++) {
-		if (convert[i] == '.' && convert[i + 1] != '0')
-			return true;
-	}
-	return false;
+bool needsPoint(float num) {
+	return trunc(num) == num;
 }
 
 void ScalarConverter::displayError() {}
 
 void ScalarConverter::displayChar(std::string convert) {
-	(void) convert;
+	char c = convert[0];
+	std::cout << "char: \'" << c << "\'" << std::endl;
+	std::cout << "int: " << static_cast<int>(c) << std::endl;
+	std::cout << "float: " << static_cast<float>(c) << ".0f" << std::endl;
+	std::cout << "float: " << static_cast<double>(c) << ".0" << std::endl;
 }
 
 void ScalarConverter::displayInt(std::string convert) {
-	(void) convert;
+	int i = atoi(convert.c_str());
+
+	// Print char
+	if (i > std::numeric_limits<char>::max() || i < -std::numeric_limits<char>::max() || i < 32)
+		std::cout << "char: Non displayable" << std::endl;
+	else
+		std::cout << "char: \'" << static_cast<char>(i) << "\'" << std::endl;
+
+	// Print int
+	if (i > std::numeric_limits<int>::max() || i < -std::numeric_limits<int>::max())
+		std::cout << "(overflowed) int: " << i << std::endl;
+	else
+		std::cout << "int: " << i << std::endl;
+	
+	// Print float
+	// debug(i);
+	// debug(std::numeric_limits<float>::max());
+	// debug(std::numeric_limits<float>::max());
+	if (i > std::numeric_limits<float>::max() || i < -std::numeric_limits<float>::max())
+		std::cout << "(overflowed) float: " << static_cast<float>(i) << ".0f" << std::endl;
+	else
+		std::cout << "float: " << static_cast<float>(i) << ".0f" << std::endl;
+
+	// Print double
+	if (i > std::numeric_limits<double>::max() || i < -std::numeric_limits<double>::max())
+		std::cout << "(overflowed) double: " << static_cast<double>(i) << ".0" << std::endl;
+	else
+		std::cout << "double: " << static_cast<double>(i) << ".0" << std::endl;
 }
 
 void ScalarConverter::displayFloat(std::string convert) {
 	float f = atof(convert.c_str());
-	bool has_point = hasPoint(convert);
+	bool needs_point = needsPoint(f);
 	if (isPseudoLiteral(convert)) {
 		std::cout << "char: impossible" << std::endl;
 		std::cout << "int: impossible" << std::endl;
@@ -144,32 +173,32 @@ void ScalarConverter::displayFloat(std::string convert) {
 	}
 
 	// Print char
-	if (f > std::numeric_limits<char>::max() || f < std::numeric_limits<char>::min() || f < 32)
+	if (f > std::numeric_limits<char>::max() || f < -std::numeric_limits<char>::max() || f < 32)
 		std::cout << "char: Non displayable" << std::endl;
 	else
 		std::cout << "char: \'" << static_cast<char>(f) << "\'" << std::endl;
 
 	// Print int
-	if (f > std::numeric_limits<int>::max() || f < std::numeric_limits<int>::min())
+	if (f > std::numeric_limits<int>::max() || f < -std::numeric_limits<int>::max())
 		std::cout << "(overflowed) int: " << static_cast<int>(f) << std::endl;
 	else
 		std::cout << "int: " << static_cast<int>(f) << std::endl;
 	
 	// Print float
-	if (f > std::numeric_limits<float>::max() || f < std::numeric_limits<float>::min())
+	if (f > std::numeric_limits<float>::max() || f < -std::numeric_limits<float>::max())
 		std::cout << "(overflowed) float: " << f << std::endl;
 	else {
-		if (has_point)
+		if (!needs_point)
 			std::cout << "float: " << f << "f" << std::endl;
 		else
 			std::cout << "float: " << f << ".0f" << std::endl;
 	}
 
 	// Print double
-	if (f > std::numeric_limits<double>::max() || f < std::numeric_limits<double>::min())
+	if (f > std::numeric_limits<double>::max() || f < -std::numeric_limits<double>::max())
 		std::cout << "(overflowed) double: " << f << std::endl;
 	else {
-		if (has_point)
+		if (!needs_point)
 			std::cout << "double: " << static_cast<double>(f) << std::endl;
 		else
 			std::cout << "double: " << static_cast<double>(f) << ".0" << std::endl;
@@ -178,7 +207,7 @@ void ScalarConverter::displayFloat(std::string convert) {
 
 void ScalarConverter::displayDouble(std::string convert) {
 	double d = atof(convert.c_str());
-	bool has_point = hasPoint(convert);
+	bool needs_point = needsPoint(d);
 	if (isPseudoLiteral(convert)) {
 		std::cout << "char: impossible" << std::endl;
 		std::cout << "int: impossible" << std::endl;
@@ -188,32 +217,32 @@ void ScalarConverter::displayDouble(std::string convert) {
 	}
 
 	// Print char
-	if (d > std::numeric_limits<char>::max() || d < std::numeric_limits<char>::min() || d < 32)
+	if (d > std::numeric_limits<char>::max() || d < -std::numeric_limits<char>::max() || d < 32)
 		std::cout << "char: Non displayable" << std::endl;
 	else
 		std::cout << "char: \'" << static_cast<char>(d) << "\'" << std::endl;
 
 	// Print int
-	if (d > std::numeric_limits<int>::max() || d < std::numeric_limits<int>::min())
+	if (d > std::numeric_limits<int>::max() || d < -std::numeric_limits<int>::max())
 		std::cout << "(overflowed) int: " << static_cast<int>(d) << std::endl;
 	else
 		std::cout << "int: " << static_cast<int>(d) << std::endl;
 	
 	// Print float
-	if (d > std::numeric_limits<float>::max() || d < std::numeric_limits<float>::min())
+	if (d > std::numeric_limits<float>::max() || d < -std::numeric_limits<float>::max())
 		std::cout << "(overflowed) float: " << static_cast<float>(d) << std::endl;
 	else {
-		if (has_point)
+		if (!needs_point)
 			std::cout << "float: " << static_cast<float>(d) << "f" << std::endl;
 		else
 			std::cout << "float: " << static_cast<float>(d) << ".0f" << std::endl;
 	}
 
 	// Print double
-	if (d > std::numeric_limits<double>::max() || d < std::numeric_limits<double>::min())
+	if (d > std::numeric_limits<double>::max() || d < -std::numeric_limits<double>::max())
 		std::cout << "(overflowed) double: " << d << std::endl;
 	else {
-		if (has_point)
+		if (!needs_point)
 			std::cout << "double: " << d << std::endl;
 		else
 			std::cout << "double: " << d << ".0" << std::endl;
@@ -221,7 +250,46 @@ void ScalarConverter::displayDouble(std::string convert) {
 }
 
 void ScalarConverter::displayException(std::string convert) {
-	(void) convert;
+	float e = atof(convert.c_str());
+	bool needs_point = needsPoint(e);
+	if (isPseudoLiteral(convert)) {
+		std::cout << "char: impossible" << std::endl;
+		std::cout << "int: impossible" << std::endl;
+		std::cout << "float: " << convert << std::endl;
+		std::cout << "double: " << static_cast<double>(e) << std::endl;
+	}
+
+	// Print char
+	if (e > std::numeric_limits<char>::max() || e < -std::numeric_limits<char>::max() || e < 32)
+		std::cout << "char: Non displayable" << std::endl;
+	else
+		std::cout << "char: \'" << static_cast<char>(e) << "\'" << std::endl;
+
+	// Print int
+	if (e > std::numeric_limits<int>::max() || e < -std::numeric_limits<int>::max())
+		std::cout << "(overflowed) int: " << static_cast<int>(e) << std::endl;
+	else
+		std::cout << "int: " << static_cast<int>(e) << std::endl;
+	
+	// Print float
+	if (e > std::numeric_limits<float>::max() || e < -std::numeric_limits<float>::max())
+		std::cout << "(overflowed) float: " << e << std::endl;
+	else {
+		if (!needs_point)
+			std::cout << "float: " << e << "f" << std::endl;
+		else
+			std::cout << "float: " << e << ".0f" << std::endl;
+	}
+
+	// Print double
+	if (e > std::numeric_limits<double>::max() || e < -std::numeric_limits<double>::max())
+		std::cout << "(overflowed) double: " << e << std::endl;
+	else {
+		if (!needs_point)
+			std::cout << "double: " << static_cast<double>(e) << std::endl;
+		else
+			std::cout << "double: " << static_cast<double>(e) << ".0" << std::endl;
+	}
 }
 
 std::ostream &operator<<(std::ostream &stream, Type type) {

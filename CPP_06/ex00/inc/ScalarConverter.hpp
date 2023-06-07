@@ -6,6 +6,7 @@
 # include <cstdlib>
 # include <limits>
 # include <cstring>
+# include <cmath>
 
 # define debug(x) std::cout << x << std::endl
 

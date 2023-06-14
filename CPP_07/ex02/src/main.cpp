@@ -5,7 +5,7 @@
 #define MAX_VAL 750
 int main(int, char**)
 {
-	std::cout << "\tTESTING STRING ALLOCATION" << std::endl;
+	std::cout << "\tTESTING STRING" << std::endl;
 	{
 		Array<std::string> tracks(5);
 

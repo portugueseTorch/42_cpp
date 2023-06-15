@@ -4,10 +4,8 @@ int main() {
 	{
 		Span span(30);
 		span.addNumber(1, 10);
-		std::cout << span << std::endl;
 		span.addNumber(4, 14);
-		std::cout << span << std::endl;
-		span.addNumber(-2, -10);
+		span.addNumber(5, -2, 84);
 		std::cout << span << std::endl;
 
 		std::cout << "Longest Span: " << span.longestSpan() << std::endl;

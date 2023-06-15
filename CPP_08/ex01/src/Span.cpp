@@ -59,14 +59,14 @@ void Span::addNumber(int reps, int floor, int ceiling) {
 	int range;
 	if (floor < ceiling) {
 		range = ceiling - floor;
+		srand(time(NULL));
 		for (int i = 0; i < reps && _vec.size() < _capacity; i++) {
-			srand(time(NULL));
 			_vec.push_back(rand() % range + floor);
 		}
 	} else if (floor > ceiling) {
 		range = floor - ceiling;
+		srand(time(NULL));
 		for (int i = 0; i < reps && _vec.size() < _capacity; i++) {
-			srand(time(NULL));
 			_vec.push_back(rand() % range + ceiling);
 		}
 	} else {

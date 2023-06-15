@@ -4,12 +4,12 @@
 
 # include <iostream>
 # include <algorithm>
-# include <vector>
 # include <map>
 # include <string.h>
 # include <string>
-# include <fstream>
 # include <cstring>
+# include <fstream>
+# include <time.h>
 
 # define debug(x) std::cout << x << std::endl;
 
@@ -34,11 +34,24 @@ class BitcoinExchange
 			public:
 				virtual const char* what() const throw();
 		};
+		class InvalidDateException: public std::exception
+		{
+			public:
+				virtual const char* what() const throw();
+		};
+		class InvalidRateException: public std::exception
+		{
+			public:
+				virtual const char* what() const throw();
+		};
 
 	private:
 		std::map<std::string,float> _data;
 		std::ifstream _infile;
 		std::ifstream _db;
+
+		static bool validDate(std::string date);
+		static bool validRate(std::string rate);
 };
 
 #endif

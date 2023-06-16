@@ -9,7 +9,7 @@
 # include <string>
 # include <cstring>
 # include <fstream>
-# include <time.h>
+# include <ctime>
 
 # define debug(x) std::cout << x << std::endl;
 
@@ -22,8 +22,9 @@ class BitcoinExchange
 		// BitcoinExchange &operator=(const BitcoinExchange &obj);
 		~BitcoinExchange();
 
-		void parseData();
-		void buildData();
+		void buildDataBase();
+		void engine();
+		void displayMap();
 
 		void setInfile(std::string infile);
 		void setDB(std::string db);
@@ -34,12 +35,17 @@ class BitcoinExchange
 			public:
 				virtual const char* what() const throw();
 		};
-		class InvalidDateException: public std::exception
+		class DBInvalidDateException: public std::exception
 		{
 			public:
 				virtual const char* what() const throw();
 		};
-		class InvalidRateException: public std::exception
+		class DBInvalidRateException: public std::exception
+		{
+			public:
+				virtual const char* what() const throw();
+		};
+		class DBIncompleteDataException: public std::exception
 		{
 			public:
 				virtual const char* what() const throw();
@@ -52,6 +58,7 @@ class BitcoinExchange
 
 		static bool validDate(std::string date);
 		static bool validRate(std::string rate);
+		static bool validInputFactor(std::string factor);
 };
 
 #endif

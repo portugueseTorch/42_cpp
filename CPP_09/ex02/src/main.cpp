@@ -7,7 +7,8 @@ int main(int argc, char **argv) {
 	}
 
 	std::vector<std::string> numbers;
-	for (int i = 0; argv[i]; i++)
+	for (int i = 1; argv[i]; i++)
 		numbers.push_back(argv[i]);
-	PmergeMe merge(numbers);
+	PmergeMe m(numbers);
+	m.merge();
 }

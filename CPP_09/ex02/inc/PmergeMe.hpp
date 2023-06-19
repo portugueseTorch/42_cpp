@@ -6,20 +6,35 @@
 # include <algorithm>
 # include <vector>
 # include <list>
+# include <utility>
 # include <time.h>
 # include <exception>
 # include <limits.h>
 # include <ctime>
 
+# define debug(x) std::cout << x << std::endl
+
 template <typename T>
 bool sorted(T &container) {
-	typename T::iterator it = t.begin();
-	typename T::iterator ite = t.end;
+	if (container.size() == 1)
+		return true;
+	typename T::iterator it = container.begin();
+	typename T::iterator ite = container.end();
 	for (; it != ite; it++) {
-		if ((it + 1) != ite && *it > *(it + 1))
+		if ((++it) != ite && *(--it) > *(++it))
 			return false;
+		--it;
 	}
 	return true;
+}
+
+template <typename T>
+void display(T &container) {
+	typename T::iterator it = container.begin();
+	typename T::iterator ite = container.end();
+	for (; it != ite; it++) {
+		std::cout << *it << " ";
+	}
 }
 
 class PmergeMe
@@ -42,8 +57,14 @@ class PmergeMe
 
 	private:
 		std::vector<int> _vec;
+		std::vector<int> _vec_sorted;
+
 		std::list<int> _lst;
+		std::list<int> _lst_sorted;
+
 		std::vector<std::string> _numbers;
+
+		bool _even;
 
 		void validateInput();
 		void mergeSortList();
